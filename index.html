@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta property="og:title" content="Weather App">
+  <meta property="og:type" content="Website" />
+  <meta property="og:description"
+    content="Provides accurate forecast includes: Celsius & Ferhenite Temperature, Sunrise and Sunset Time, Cloud condition, Wind Speed and Direction, and more.">
+  <meta property="og:image" content="imgs/thumbnail.jpg">
+  <meta property="og:url" content="https://realtime-weatherapp.netlify.app/">
+  <meta name="theme-color" content="#3A3845" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="weather, forecast, realtime weather" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="imgs/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Weather App</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- NavBar -->
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="fa-solid fa-cloud-moon"></i> Real-Time Weather <small
+          class="version">version 1.5</small></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </div>
+    </div>
+  </nav>
+  <!-- End of Navbar -->
+
+  <!-- Main Containers -->
+  <div class="searchbar">
+    <div class="container" id="app">
+      <div class="form-group">
+        <div class="input-group mb-3 gap-2">
+          <input type="search" class="form-control" placeholder="Search City..." aria-label="Recipient's username"
+            aria-describedby="basic-addon2" id="search-field"/>
+          <div class="input-group-append">
+            <button class="btn btn-dark" id="search-btn" type="button">
+              <i class="fa-solid fa-magnifying-glass"></i> Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container message">
+    <h5 id="message"></h5>
+  </div>
+  <div class="container">
+    <div class="img">
+      <img id="emptyimage" src="imgs/Weather.svg" alt="">
+    </div>
+    <div class="spinner">
+      <div class="spinner-border text-dark" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div id="main">
+      <div class="box1" id="location">
+        <div class="left">
+          <h5 class="text"><i class="fa-regular fa-clock icon"></i> T.Zone</h5>
+          <h2 class="text" id="timezone"></h2>
+        </div>
+        <div class="center">
+          <h1 class="text" id="city"></h1>
+          <h4 class="text" id="country"></h4>
+        </div>
+        <div class="right">
+          <h5 class="text"><i class="fa-brands fa-skyatlas icon"></i> Sky</h5>
+          <h2 class="text" id="description"></h2>
+        </div>
+      </div>
+      <div class="box2">
+        <div class="left">
+          <h5 class="text">Celsius</h5>
+          <h1 class="text" id="degreeC"></h1>
+        </div>
+        <div class="center">
+          <img id="icon" src="" alt="Weather icon">
+        </div>
+        <div class="right">
+          <h5 class="text">Fahrenheit</h5>
+          <h1 class="text" id="degreeF"></h1>
+        </div>
+      </div>
+      <div class="box3">
+        <div class="sunrise">
+          <h5 class="text sunrise-title"><i class="fa-regular fa-sun icon"></i> Sunrise</h5>
+          <h2 class="text" id="sunrise"></h2>
+          <hr class="line">
+          <h5 class="text sunset-title"><i class="fa-solid fa-cloud-sun icon"></i> Sunset</h5>
+          <h2 class="text" id="sunset"></h2>
+        </div>
+        <div class="wind">
+          <h5 class="text windspeed-title"><i class="fa-solid fa-gauge-high icon"></i> Wind Speed</h5>
+          <h2 class="text" id="windspeed"></h2>
+          <hr class="line">
+          <h5 class="text windirection-title"><i class="fa-solid fa-compass icon"></i> Wind Direction</h5>
+          <h2 class="text" id="windirection"></h2>
+        </div>
+        <div class="cloud">
+          <h5 class="text clouds-title"><i class="fa-solid fa-cloud icon"></i> Clouds</h5>
+          <h2 class="text " id="clouds"></h2>
+          <hr class="line">
+          <h5 class="text snow-title"><i class="fa-solid fa-snowflake icon"></i> Snow</h5>
+          <h2 class="text" id="snow"></h2>
+        </div>
+        <div class="cloud">
+          <h5 class="text feels-title"><i class="fa-solid fa-temperature-three-quarters icon"></i> Feels</h5>
+          <h2 class="text " id="feelslike"></h2>
+          <hr class="line">
+          <h5 class="text humidity-title"><i class="fa-regular fa-sun icon"></i> Humidity</h5>
+          <h2 class="text" id="humidity"></h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <!-- Footer -->
+  <footer class="footer mt-auto pt-3">
+    <p class="copyright">
+      Coded & Designed with <i class="fa-solid fa-heart" style="color: red;"> </i> By:
+      <a href="https://kfirlankry.netlify.app/" target="_blank">Kfir Lankry</a>
+    </p>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+
+</html>
