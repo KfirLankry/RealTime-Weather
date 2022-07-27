@@ -3,7 +3,7 @@ RealTime-Weather App Provides accurate forecast includes: Celsius & Ferhenite Te
 
 ## Installation
 Real-Time Weather App uses [WeatherBit](weatherbit.io) Api to fetch weather data.  
-To run this app, you'll need a WeatherBit API key. This is entirely free. To do so:
+To run this app, you'll need a WeatherBit API key. It is free! To do so:
 
 - Create your account [Here](https://www.weatherbit.io/account/create) and get your Weatherbit Api key.
 - Open the project, and go to app.js file.
