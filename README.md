@@ -1,9 +1,9 @@
-# Real-Time Weather App
-RealTime-Weather App Provides accurate forecast includes: Celsius & Ferhenite Temperature, Sunrise and Sunset Time, Cloud condition, Wind Speed and Direction, and more.
+# Real-Time Weather
+RealTime-Weather Provides accurate forecast includes: Celsius & Ferhenite Temperature, Sunrise and Sunset Time, Cloud condition, Wind Speed and Direction, and more.
 
 ## Installation
-Real-Time Weather App uses [WeatherBit](weatherbit.io) Api to fetch weather data.  
-To run this app, you'll need a WeatherBit API key. It is free! To do so:
+Real-Time Weather uses [WeatherBit](weatherbit.io) Api to fetch weather data.  
+To run this app, you'll need a [WeatherBit](weatherbit.io) API key. It is free! To do so:
 
 - Create your account [Here](https://www.weatherbit.io/account/create) and get your Weatherbit Api key.
 - Open the project, and go to app.js file.
